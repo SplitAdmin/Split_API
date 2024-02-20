@@ -25,7 +25,7 @@ const User = (sequelize) => {
             type: DataTypes.NUMBER
         },
         password: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         image: {
             type: DataTypes.STRING
@@ -38,7 +38,7 @@ const User = (sequelize) => {
         updatedAt: false,
         // paranoid: true
     });
-    sequelize.sync({ alter: true });
+    // sequelize.sync({ alter: true });
 }
 
 export default User;
