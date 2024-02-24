@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import db from "../config/db";
+import db from "../config/db.js";
 const User = db.sequelize.define('User', {
     Id: {
         type: DataTypes.UUID,
@@ -37,6 +37,6 @@ const User = db.sequelize.define('User', {
     updatedAt: false,
     // paranoid: true
 });
-sequelize.sync({ alter: true });
+// db.sequelize.sync({ alter: true });
 
 export default User;

@@ -1,6 +1,4 @@
-import db from '../models/index.js';
 import UserController from "../controllers/userController.js";
-const sequelize = db.sequelize;
 async function signup(req, res) {
     const user = req.body;
     try {
