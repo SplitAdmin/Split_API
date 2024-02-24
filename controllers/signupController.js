@@ -1,21 +1,21 @@
 import UserController from "../controllers/userController.js";
-async function signup(req, res) {
+import { createAccessToken } from "../middlewares/auth/auth.js";
+import Result from "../models/result.js";
+export async function signup(req, res) {
     const user = req.body;
     try {
         const user_res = await UserController.FindUserByEmail(user.email);
         if (user_res != null) throw new Error('user is already registered.Please login!');
-        let val = await UserController.CreateUserAsync({
+        let createdUser = await UserController.CreateUserAsync({
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             password: user.password
         });
-        console.log(val.dataValues);
-        return res.send(val.dataValues);
+        createdUser.password = "";
+        const accessToken = createAccessToken({ Id: createdUser.Id, email: createdUser.email })
+        return res.status(200).send(new Result({ user: createdUser, accessToken }));
     } catch (error) {
-        console.log(error);
-        return error;
+        return res.status(403).send(new Result(null, error.message, false));
     }
 }
-
-export default { signup };

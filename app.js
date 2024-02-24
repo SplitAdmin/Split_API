@@ -5,7 +5,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './docs/swagger.json' assert { type: 'json'};
 const app = express();
 
-app.put(authRoutes);
+app.use(express.json());
+app.use(authRoutes);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
