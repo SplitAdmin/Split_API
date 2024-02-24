@@ -5,7 +5,7 @@ const db = {};
 
 db.sequelize = sequelize;
 
-db.user = User(sequelize);
+db.User = User(sequelize);
 
 
 // SECTION - relations

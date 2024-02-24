@@ -1,7 +1,6 @@
 import express from "express";
 import './extension/index.js'
 import authRoutes from './routes/authRoutes.js'
-
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './docs/swagger.json' assert { type: 'json'};
 const app = express();
