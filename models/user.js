@@ -7,12 +7,9 @@ const User = db.sequelize.define('User', {
         autoIncrement: true,
         allowNull: false,
     },
-    firstName: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    lastName: {
-        type: DataTypes.STRING
     },
     email: {
         type: DataTypes.STRING,
@@ -30,7 +27,7 @@ const User = db.sequelize.define('User', {
         type: DataTypes.STRING
     },
 }, {
-    schema: '.Split',
+    // schema: '.Split',
     tableName: 'User',
     timestamps: false,
     createdAt: true,

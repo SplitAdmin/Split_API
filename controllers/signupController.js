@@ -7,14 +7,15 @@ export async function signup(req, res) {
         const user_res = await UserController.FindUserByEmail(user.email);
         if (user_res != null) throw new Error('user is already registered.Please login!');
         let createdUser = await UserController.CreateUserAsync({
-            firstName: user.firstName,
-            lastName: user.lastName,
+            name: user.name,
             email: user.email,
-            password: user.password
+            password: user.password,
+            phone: user.phone,
+            image: user.image,
         });
         createdUser.password = "";
         const accessToken = createAccessToken({ Id: createdUser.Id, email: createdUser.email })
-        return res.status(200).send(new Result({ user: createdUser, accessToken }));
+        return res.status(200).send(new Result({ ...createdUser, accessToken }));
     } catch (error) {
         return res.status(403).send(new Result(null, error.message, false));
     }
