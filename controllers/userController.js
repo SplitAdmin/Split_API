@@ -15,7 +15,7 @@ class UserController {
     static async FindUserByEmail(email) {
         try {
             const user = await UserDM.findOne({ where: { email: email } });
-            return user;
+            return user.dataValues;
         } catch (error) {
             console.log(error);
         }
